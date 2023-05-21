@@ -6,6 +6,16 @@ window.addEventListener('keydown', function(e)
     audio.currentTime = 0; //revind to start
     audio.play();
 
-    console.log(key);
     key.classList.add('playing')
 });
+
+
+function removeTransition(e) {
+    console.log(e);
+    if (e.propertyName !== 'transform') return;
+    this.classList.remove('playing');
+    console.log(e.propertyName);
+}
+
+const keys = document.querySelectorAll('.key');      
+keys.forEach( key => key.addEventListener('transitionend', removeTransition));
